@@ -7,10 +7,8 @@ interface CounterState {
 
 }
 
-
 const initialState: CounterState = {
-    value: 0,
-    
+    value: 10,
 };
 
 const counterSlice = createSlice({
@@ -18,17 +16,20 @@ const counterSlice = createSlice({
     initialState,
     reducers: {
         // increment
-        incremented(state){
-    
-        // it is okay to do this because immer makes it immutable
-        //under the hood 
-        state.value++;
-    }
+        incremented(state) {
+
+            // it is okay to do this because immer makes it immutable
+            //under the hood 
+            state.value++;
+        },
+        amountAdded(state, action: PayloadAction<number>) {
+            state.value += action.payload
+        }
         //decrement
 
         //reset
     }
 })
 
-export const {incremented} = counterSlice.actions;
+export const { incremented } = counterSlice.actions;
 export default counterSlice.reducer;
